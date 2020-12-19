@@ -18,7 +18,22 @@ This project applies order-encoding methods and deep learning methods to do the 
 ## Models
 This project includes below models:
 
-**CNN:**
+### Data processing
+For example you want to analyse the stocks which have 'ABCD' and 'EFG' as stock ticker symbols. You will use 'ABCD' and 'EFGH' as symbol and input your path of orignal data:
+```
+path = 'your path'
+symbol = ['ABCD', 'EFGH']
+```
+Then just follow the whole automatic data processing and gain models. 
+```
+for symbol in symbols:
+    X_train, X_val, X_test, y_train, y_val, y_test = data_processing(path, symbol)
+    _, seq_length, n_features = X_train.shape
+    test_cnn(symbol)
+    test_lstm(symbol)
+```
+
+### CNN:
 - Embedding of order-type
 - (with/without) Average pooling
 - Convolutional layers (with/without inception module)
@@ -28,7 +43,15 @@ And tested models
 - with/without average pooling
 - with/without inception structures
 
-**LSTM:**
+If you want to see the plot of the model, you first set (kernel size, number of filters) and average pooling size if you want multiple average pooling layers using the below codes in our scripts:
+```
+filter_fk = [(3, 20), (5, 20), (7, 20)]
+avg_pool_size = [5, 10]
+model = build_CNN_model(filter_fk, avg_pool_size)
+plot_model(model)
+```
+
+### LSTM:
 - Embedding
 - Several LSTM layers
 - Batch-norm and dropout layers used in between
@@ -38,6 +61,14 @@ And tested the LSTM model
 - with different layers
 - with/without average pooling layers
 
+
+If you want to see the plot of the model, you first set average pooling size if you want multiple average pooling layers and the number of layers in LSTM model using the below codes in our scripts:
+```
+avg_pool_size_lst = [0, 5, 10]
+n_lstm_lst = 2
+model = build_LSTM_model(avg_pool_size_lst, n_lstm_lst)
+plot_model(model)
+```
 ## Results
 **CNN:**
 For CNN models, we can achieve a 60% F1 score. However, average pooling and larger kernel sizes do not work, because our dataset only contains high frequency market orders, where low resolution information is not quite useful. Our parallel-kernel model can give similar performance as small-kernel models. It is expected to give better results on dataset containing both high frequency and low frequency data.

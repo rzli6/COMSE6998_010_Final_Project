@@ -1,7 +1,7 @@
 # Prediction of short-term stock price by A-CNN+
 ## COMSE6998_010_Final_Project
 
-Author: [Ruizhe Li (rl3070)](https://github.com/rzli6) \& [Ruochen Nan (rn2498)](https://github.com/marina32).
+**Author:** [Ruizhe Li (rl3070)](https://github.com/rzli6) and [Ruochen Nan (rn2498)](https://github.com/marina32).
 
 ## Introduction
 This project applies order-encoding methods and deep learning methods to do the short-term stock price prediction. Using [NYSE TAQ data](https://www.nyse.com/market-data/historical) on Oct 7th, 2019 in the A-CNN, A-CNN+ and A-LSTM model solves the classification problem of two classes (Up, Down) and the mid-price is the target of prediction.
@@ -61,7 +61,6 @@ And tested the LSTM model
 - with different layers
 - with/without average pooling layers
 
-
 If you want to see the plot of the model, you first set average pooling size if you want multiple average pooling layers and the number of layers in LSTM model using the below codes in our scripts:
 ```
 avg_pool_size_lst = [0, 5, 10]
@@ -69,6 +68,7 @@ n_lstm_lst = 2
 model = build_LSTM_model(avg_pool_size_lst, n_lstm_lst)
 plot_model(model)
 ```
+
 ## Results
 **CNN:**
 For CNN models, we can achieve a 60% F1 score. However, average pooling and larger kernel sizes do not work, because our dataset only contains high frequency market orders, where low resolution information is not quite useful. Our parallel-kernel model can give similar performance as small-kernel models. It is expected to give better results on dataset containing both high frequency and low frequency data.

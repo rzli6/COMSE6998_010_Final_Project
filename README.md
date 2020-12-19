@@ -24,7 +24,7 @@ For example you want to analyse the stocks which have 'ABCD' and 'EFG' as stock 
 path = 'your path'
 symbol = ['ABCD', 'EFGH']
 ```
-Then just follow the whole automatic data processing and gain models. 
+Then just follow the whole automatic data processing and the code below will also train and do grid search on both CNN and LSTM models. 
 ```
 for symbol in symbols:
     X_train, X_val, X_test, y_train, y_val, y_test = data_processing(path, symbol)
